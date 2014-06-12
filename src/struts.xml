@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="/" extends="struts-default">
+		<action name="denglu" class="denglu">
+			<result name="success">/index.jsp</result>
+			<result name="faild">/denglu.jsp</result>
+		</action>
+		
+		<action name="chaxun" class="chaxun">
+			<result name="success">/chaxun.jsp</result>
+		</action>
+		
+		<action name="xiugai" class="xiugai">
+			<result name="success">/dakehu.jsp</result>
+		</action>
+		
+		<action name="feipiao" class="feipiao">
+			<result name="success">/dakehu.jsp</result>
+		</action>
+		
+		<action name="writeexcel" class="writeexcel">
+			<result name="success">/xiazai.jsp</result>
+		</action>
+		
+		<action name="dakehu" class="dakehu">
+			<result name="success">/dakehu.jsp</result>
+			<result name="faild">/chongfu.jsp</result>
+		</action>
+		
+		<action name="zhanzuo" class="zhanzuo">
+			<result name="success">/sszhanzuo.jsp</result>
+		</action>
+	</package>
+</struts>
+	

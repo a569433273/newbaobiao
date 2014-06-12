@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+* { margin:0; padding:0;}
+body { height:auto;background-color:#045d99; font-size:16px; font-family:"微软雅黑";overflow:hidden; }
+.box { width:517px; height:325px; background-color:#e7e9ea; margin:100px auto; border-radius:10px;-webkit-box-shadow:#e7e9ea 0px 0px 80px -10px; -moz-box-shadow:#e7e9ea 0px 0px 80px -10px; box-shadow:#e7e9ea 0px 0px 80px -10px;
+ }
+.tp { width:281px; margin:0 auto; background-color:#045D99; border-bottom-left-radius:10px; border-bottom-right-radius:10px; padding:15px 0 12px 60px;}
+.loginp { width:335px; height:80px; padding-top:30px; margin:0 auto; padding-bottom:50px;}
+.loginp ul li{ width:335px; line-height:47px; float:left;list-style-type:none; }
+.btn { width:200px; margin-bottom:30px; margin:0 auto;}
+.btn input { margin-left:20px;}
+.btn img { margin-left:20px;}
+.bottom { width:100%; position:absolute;bottom:0;margin-top:89px; background-color:#e7e9ea; border-top-left-radius:5px; border-top-right-radius:5px;
+-webkit-box-shadow:#e7e9ea 0px 0px 80px; -moz-box-shadow:#e7e9ea 0px 0px 80px; box-shadow:#e7e9ea 0px 0px 5px; float:right;}
+.font1 { font-size:12px; font-family:"微软雅黑"; line-height:28px; padding-left:15px; float:left;}
+.font2 { font-size:12px; font-family:"微软雅黑"; line-height:28px; padding-right:30px; float:right;}
