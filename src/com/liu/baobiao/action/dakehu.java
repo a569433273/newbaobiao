@@ -172,6 +172,11 @@ public class dakehu extends ActionSupport implements ModelDriven<Object> {
 			cuowumessage = "这个PNR已经做过表了";
 			return "faild";
 		}
+		
+		if ( Double.parseDouble(lirun) <= 0) {
+			cuowumessage = "这张票的收款钱数错误";
+			return "faild";
+		}
 
 		// 出票日期
 		DateFormat timedf = new SimpleDateFormat("yyyyMMdd");
