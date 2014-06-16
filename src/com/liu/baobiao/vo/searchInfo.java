@@ -5,13 +5,13 @@ public class searchInfo {
 	private String password;
 	
 	private String pnrchaxun;
+	private String ordidchaxun;
 
 	private String PNRmessage;
 	private String ordid;
 	
 	private String creatPNRmessage;
 	private String osinumber;
-	private String qingkuang;
 	
 	private String xid;
 	private String xcaigoushang;
@@ -59,6 +59,14 @@ public class searchInfo {
 		this.pnrchaxun = pnrchaxun;
 	}
 	
+	public String getOrdidchaxun() {
+		return ordidchaxun;
+	}
+
+	public void setOrdidchaxun(String oriidchaxun) {
+		this.ordidchaxun = oriidchaxun;
+	}
+
 	public String getPNRmessage() {
 		return PNRmessage;
 	}
@@ -89,14 +97,6 @@ public class searchInfo {
 
 	public void setOsinumber(String osinumber) {
 		this.osinumber = osinumber;
-	}
-
-	public String getQingkuang() {
-		return qingkuang;
-	}
-
-	public void setQingkuang(String qingkuang) {
-		this.qingkuang = qingkuang;
 	}
 
 	public String getXid() {
