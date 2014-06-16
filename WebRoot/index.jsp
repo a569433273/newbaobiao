@@ -89,14 +89,15 @@
 				<img src="images/right_b_03.png" />
 			</div>
 
-			<div class="right4">根据PNR查询订单</div>
+			<div class="right4">查询订单</div>
 			<div class="right5">
 				<table>
 					<tr>
 						<td>
 							<form action="chaxun.action" name="chaxunform" id="chaxunform"
 								method="post" target="right2_tt">
-								<input type="text" name="pnrchaxun" id="pnrchaxun" /> <input
+								PNR：<input type="text" name="pnrchaxun" id="pnrchaxun" /> 
+								订单号：<input type="text" name="ordidchaxun" id="ordidchaxun" /><input
 									type="submit" value="查询" />
 							</form></td>
 						<td>
