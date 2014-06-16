@@ -1,10 +1,13 @@
 package com.liu.baobiao.action;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,13 +40,13 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 		String nmhang = "nm";
 		String ssrhang = "";
 		String osihang = "";
-		String zongti = "";
+		String shixianhang = "";
 
 		for (int i = 0; i < 10; i++) {
 			shenfenzhengzhen.add(" ");
 		}
 
-		if (searchInfo.getQingkuang().equalsIgnoreCase("1")) {
+		if (searchInfo.getOsinumber().equalsIgnoreCase("1")) {
 			zhengze(osinumber, "\\s\\d{11}\\s");
 			osinumber.set(0,osinumber.get(0).replaceAll("\\s", ""));
 			zhengze(hangban, "[A-Z][A-Z]\\d{3,4}");
@@ -53,26 +56,9 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 
 			zhengze(shijian, "\\d{4}[-]\\d{2}[-]\\d{2}");
 
-			int yuefen = Integer.parseInt(shijian.get(0).substring(5, 7));
-			String yf = "";
-			switch (yuefen) {
-			case 04:
-				yf = "APR";
-				break;
-			case 05:
-				yf = "MAY";
-				break;
-			case 06:
-				yf = "JUN";
-				break;
-			case 07:
-				yf = "JUL";
-				break;
-			default:
-				break;
-			}
+			String yuefen = shijianzhuanyuefen();
 
-			sshang = sshang + shijian.get(0).substring(8, 10) + yf;
+			sshang = sshang + shijian.get(0).substring(8, 10) + yuefen;
 
 			zhengze(didian, "[A-Z]{3}");
 			zhengze(renming,
@@ -90,14 +76,10 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 						+ "/p" + (i + 1) + "\n";
 			}
 
-			DateFormat timedf = new SimpleDateFormat("HH");
-			String time = timedf.format(calendar.getTime());
-			int a = Integer.parseInt(time);
-			a = a + 3;
-			zongti = "tktl/" + String.valueOf(a) + "00/./pek460" + "\n";
+			shixianhang = shixianhang();
 
 			ssmessage = sshang + "\n" + nmhang.trim() + "\n" + ssrhang
-					+ osihang + "\n" + zongti + "\\";
+					+ osihang + "\n" + shixianhang + "\\";
 		} else {
 			zhengze(hangban, "[A-Z][A-Z]\\d{3,4}");
 			sshang = sshang + hangban.get(0) + "Y";
@@ -143,26 +125,53 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 			osihang = osihang + "osi " + hangban.get(0).substring(0, 2)
 					+ " ctct" + searchInfo.getOsinumber();
 			
-			DateFormat timedf = new SimpleDateFormat("HH");
-			String time = timedf.format(calendar.getTime());
-			int a = Integer.parseInt(time);
-			a = a + 3;
-			System.out.println(a);
-			zongti = "tktl/" + String.valueOf(a) + "00/./pek460" + "\n";
+			shixianhang = shixianhang();
 			
 			ssmessage = sshang + "\n" + nmhang.trim() + "\n" + ssrhang
-					+ osihang + "\n" + zongti + "\\";
+					+ osihang + "\n" + shixianhang + "\\";
 		}
 		shenfenzhengzhen.clear();
 		return "success";
 	}
 
-	@Override
-	public Object getModel() {
-		// TODO Auto-generated method stub
-		return searchInfo;
+	/**
+	 * tktl生成
+	 * 
+	 * @author 刘健
+	 */
+	private String shixianhang() {
+		String shixianhang;
+		DateFormat timedf = new SimpleDateFormat("HH");
+		String time = timedf.format(calendar.getTime());
+		int a = Integer.parseInt(time);
+		a = a + 3;
+		shixianhang = "tktl/" + String.valueOf(a) + "00/./pek460" + "\n";
+		return shixianhang;
 	}
 
+	/**
+	 * 网页时间类似04转成英文通用方法
+	 * 
+	 * @author 刘健
+	 */
+	private String shijianzhuanyuefen() throws ParseException {
+		String yuefen = shijian.get(0).substring(5, 7);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM");
+		Date date = simpleDateFormat.parse(yuefen);
+		simpleDateFormat = new SimpleDateFormat("MMMM",Locale.US);
+		yuefen = simpleDateFormat.format(date).substring(0, 3);
+		return yuefen;
+	}
+
+	/**
+	 * 正则表达式通用方法
+	 * 
+	 * @author 刘健
+	 * @param list
+	 *            存储正则表达式结果的列表
+	 * @param zzbiaodashi
+	 *            匹配的正则表达式
+	 */
 	private void zhengze(List<String> list, String zzbiaodashi) {
 		String creatPNRmessage = searchInfo.getCreatPNRmessage();
 		Pattern pattern = Pattern.compile(zzbiaodashi);
@@ -171,6 +180,11 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 		while (matcher.find()) {
 			list.add(matcher.group().trim());
 		}
+	}
+	
+	@Override
+	public Object getModel() {
+		return searchInfo;
 	}
 
 	public searchInfo getSearchInfo() {
