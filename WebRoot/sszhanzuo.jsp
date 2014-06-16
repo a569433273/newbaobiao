@@ -25,11 +25,19 @@
 <body>
 	<form action="zhanzuo.action" name="mmform" id="mmform" method="post">
 		<textarea name="creatPNRmessage" id="creatPNRmessage" rows="9"
-			cols="88"><s:property value="ssmessage" /></textarea><br />
-		联系电话：<input type="text" name="osinumber" id="osinumber" /> <select
-			name="qingkuang" id="qingkuang">
+			cols="88"><s:property value="ssmessage" /></textarea>
+		<br /> 联系电话：<select name="osinumber" id="osinumber">
 			<option value="1">大客户</option>
-			<option value="2">换位</option>
+			<option value="13580305752">新天空</option>
+			<option value="13339981503">盛亚辉</option>
+			<option value="13911133783">邝雄辉</option>
+			<option value="18611603453">王海林</option>
+			<option value="13368888848">张禄萍</option>
+			<option value="18611343843">王海芹</option>
+			<option value="13710970066">新天空2</option>
+			<option value="15010077407">王海生</option>
+			<option value="13699246811">吴德生</option>
+			<option value="18606582037">中体国旅</option>
 		</select> <input type="submit" name="submit" class="button" value="占座" />
 	</form>
 </body>
