@@ -51,16 +51,23 @@ public class DakehuDaoImpl implements DakehuDao {
 	}
 
 	@Override
-	public List<Dakehu> findBychupiaoriqiandhangkonggongsi(String chupiaoriqi,String hangkonggongsi) {
+	public List<Dakehu> findBypnr(String pnr) {
 		// TODO Auto-generated method stub
-		List<Dakehu> dakehus = hibernateTemplate.find("from Dakehu d where d.chupiaoriqi like '" + chupiaoriqi + "%' and hangkonggongsi = '" + hangkonggongsi +"' order by caigoushang");
+		List<Dakehu> dakehus = hibernateTemplate.find("from Dakehu d where d.pnr = '" + pnr + "'");
 		return dakehus;
 	}
 
 	@Override
-	public List<Dakehu> findBypnr(String pnr) {
+	public List<Dakehu> findByordid(String ordid) {
 		// TODO Auto-generated method stub
-		List<Dakehu> dakehus = hibernateTemplate.find("from Dakehu d where d.pnr = '" + pnr + "'");
+		List<Dakehu> dakehus = hibernateTemplate.find("from Dakehu d where d.ordid = '" + ordid + "'");
+		return dakehus;
+	}
+
+	@Override
+	public List<Dakehu> findBychupiaoriqiandhangkonggongsi(String chupiaoriqi,String hangkonggongsi) {
+		// TODO Auto-generated method stub
+		List<Dakehu> dakehus = hibernateTemplate.find("from Dakehu d where d.chupiaoriqi like '" + chupiaoriqi + "%' and hangkonggongsi = '" + hangkonggongsi +"' order by caigoushang");
 		return dakehus;
 	}
 
@@ -77,5 +84,4 @@ public class DakehuDaoImpl implements DakehuDao {
 		Dakehu dakehu = (Dakehu)hibernateTemplate.load(Dakehu.class, id);
 		return dakehu;
 	}
-
 }
