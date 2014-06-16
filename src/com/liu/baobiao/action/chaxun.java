@@ -32,13 +32,18 @@ public class chaxun extends ActionSupport implements ModelDriven<Object> {
 		if (dakehus.size() > 0) {
 			cunzai = "1";
 		} else {
-			cunzai = "这个订单不存在！！！快做表！！！";
+			dakehus = dakehuDao.findByordid(searchInfo.getOrdidchaxun().trim());
+			if (dakehus.size() > 0) {
+				cunzai = "1";
+			} else {
+				cunzai = "这个订单不存在！！！快做表！！！";
+			}
 		}
 		return "success";
 	}
 
 	public chaxun() {
-		
+
 	}
 
 	@Override
