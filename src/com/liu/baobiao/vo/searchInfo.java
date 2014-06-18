@@ -9,6 +9,8 @@ public class searchInfo {
 
 	private String PNRmessage;
 	private String ordid;
+	private int caigoushang;
+	private String noordidshishou;
 	
 	private String creatPNRmessage;
 	private String osinumber;
@@ -83,6 +85,22 @@ public class searchInfo {
 		this.ordid = ordid;
 	}
 	
+	public int getCaigoushang() {
+		return caigoushang;
+	}
+
+	public void setCaigoushang(int caigoushang) {
+		this.caigoushang = caigoushang;
+	}
+
+	public String getNoordidshishou() {
+		return noordidshishou;
+	}
+
+	public void setNoordidshishou(String noordidshishou) {
+		this.noordidshishou = noordidshishou;
+	}
+
 	public String getCreatPNRmessage() {
 		return creatPNRmessage;
 	}
