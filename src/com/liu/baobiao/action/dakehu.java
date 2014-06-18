@@ -98,9 +98,29 @@ public class dakehu extends ActionSupport implements ModelDriven<Object> {
 		pnr = xingmingwithoutspace.substring(xingmingwithoutspace.length() - 6,
 				xingmingwithoutspace.length()).trim();
 
-		shishou = GetOrdid.Ordids(pnr,searchInfo.getOrdid())[1];
+		// 出票日期
+		DateFormat timedf = new SimpleDateFormat("yyyyMMdd");
+		String time = timedf.format(calendar.getTime());
 
-		switchcaigoushang();
+		if (searchInfo.getOrdid() != null) {
+			shishou = GetOrdid.Ordids(pnr, searchInfo.getOrdid())[1];
+			switchcaigoushang();
+			ordid = "AS" + time
+					+ GetOrdid.Ordids(pnr, searchInfo.getOrdid())[0];
+		} else {
+			shishou = searchInfo.getNoordidshishou();
+			switch (searchInfo.getCaigoushang()) {
+			case 1:
+				caigoushang = "二连浩特";
+				break;
+			case 2:
+				caigoushang = "中体国旅";
+				break;
+			default:
+				break;
+			}
+			ordid = "";
+		}
 
 		zhengze(chengjiriqi, "\\d{2}[A-Z]{3}");
 		if (chengjiriqi.size() == 0) {
@@ -172,17 +192,12 @@ public class dakehu extends ActionSupport implements ModelDriven<Object> {
 			cuowumessage = "这个PNR已经做过表了";
 			return "faild";
 		}
-		
-		if ( Double.parseDouble(lirun) <= 0) {
+
+		if (Double.parseDouble(lirun) <= 0) {
 			cuowumessage = "这张票的收款钱数错误";
 			return "faild";
 		}
 
-		// 出票日期
-		DateFormat timedf = new SimpleDateFormat("yyyyMMdd");
-		String time = timedf.format(calendar.getTime());
-
-		ordid = "AS" + time + GetOrdid.Ordids(pnr,searchInfo.getOrdid())[0];
 		savedakehu(time);
 
 		return "success";
@@ -286,7 +301,7 @@ public class dakehu extends ActionSupport implements ModelDriven<Object> {
 	 * @param 根据网页返回值得到采购商名称
 	 */
 	private void switchcaigoushang() {
-		String name = GetOrdid.Ordids(pnr,searchInfo.getOrdid())[2];
+		String name = GetOrdid.Ordids(pnr, searchInfo.getOrdid())[2];
 		switch (CaigoushangZhuan.getcaigoushang(name)) {
 		case pfzlplj220:
 			caigoushang = "张禄萍";
