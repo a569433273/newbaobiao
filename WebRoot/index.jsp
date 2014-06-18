@@ -51,7 +51,7 @@
 						</li>
 						<li><a href="#">淘宝/去哪儿店</a>
 						</li>
-						<li><a href="#">集团客户</a>
+						<li><a href="dakehunoordid.jsp" target="right2_tt">线下大客户</a>
 						</li>
 						<li><a href="sszhanzuo.jsp" target="right2_tt">快速生成SS</a>
 						</li>
