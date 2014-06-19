@@ -30,10 +30,18 @@ public class chaxun extends ActionSupport implements ModelDriven<Object> {
 	public String execute() throws Exception {
 		dakehus = dakehuDao.findBypnr(searchInfo.getPnrchaxun().trim());
 		if (dakehus.size() > 0) {
+			for (int i = 0;i < dakehus.size()-1;i++) {
+				dakehuDao.delete(dakehus.get(i));
+			}
+			dakehus = dakehuDao.findBypnr(searchInfo.getPnrchaxun().trim());
 			cunzai = "1";
 		} else {
 			dakehus = dakehuDao.findByordid(searchInfo.getOrdidchaxun().trim());
 			if (dakehus.size() > 0) {
+				for (int i = 0;i < dakehus.size()-1;i++) {
+					dakehuDao.delete(dakehus.get(i));
+				}
+				dakehus = dakehuDao.findByordid(searchInfo.getOrdidchaxun().trim());
 				cunzai = "1";
 			} else {
 				cunzai = "这个订单不存在！！！快做表！！！";
