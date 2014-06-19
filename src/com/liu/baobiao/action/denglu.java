@@ -24,14 +24,19 @@ public class denglu extends ActionSupport implements ModelDriven<Object> {
 	@Override
 	public String execute() throws Exception {
 		user = userDao.findByusername(searchInfo.getUsername());
-
 		HttpServletRequest request = ServletActionContext.getRequest();
 
 		String yuangong = user.getYuangong();
 		request.getSession().setAttribute("yuangong", yuangong);
 		request.getSession().setMaxInactiveInterval(-1);
 
+		searchInfo.setUsername(null);
+		
 		if (searchInfo.getPassword() == "") {
+			return "faild";
+		}
+		
+		if (searchInfo.getUsername() == null) {
 			return "faild";
 		}
 
