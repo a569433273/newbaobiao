@@ -16,16 +16,24 @@
 <body>
 	<form action="dakehu.action" name="dakehuform" id="dakehuform"
 		method="post">
+		<input type="hidden" id="nameofcaigoushang" name="nameofcaigoushang"
+			value="二连浩特">
 		<table>
 			<tr>
 				<td colspan="2"><textarea name="PNRmessage" cols="60" rows="14"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td>采购商：<select name="caigoushang" id="caigoushang">
+				<td>采购商：<select name="caigoushang" id="caigoushang"
+					onchange="getcaigoushang(this.options[this.options.selectedIndex].text)">
 						<option value="1">二连浩特</option>
 						<option value="2">中体国旅</option>
-				</select></td>
+				</select> <script type="text/javascript">
+					function getcaigoushang(s) {
+						document.getElementById("nameofcaigoushang").value = s;
+					}
+				</script>
+				</td>
 				<td>实收：<input type="text" name="noordidshishou"
 					id="noordidshishou" /></td>
 			</tr>

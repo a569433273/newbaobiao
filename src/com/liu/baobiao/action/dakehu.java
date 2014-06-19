@@ -109,16 +109,7 @@ public class dakehu extends ActionSupport implements ModelDriven<Object> {
 					+ GetOrdid.Ordids(pnr, searchInfo.getOrdid())[0];
 		} else {
 			shishou = searchInfo.getNoordidshishou();
-			switch (searchInfo.getCaigoushang()) {
-			case 1:
-				caigoushang = "二连浩特";
-				break;
-			case 2:
-				caigoushang = "中体国旅";
-				break;
-			default:
-				break;
-			}
+			caigoushang = searchInfo.getNameofcaigoushang();
 			ordid = "";
 		}
 
