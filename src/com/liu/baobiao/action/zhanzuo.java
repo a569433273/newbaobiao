@@ -41,6 +41,7 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 		String ssrhang = "";
 		String osihang = "";
 		String shixianhang = "";
+		String rmkhang = "";
 
 		for (int i = 0; i < 10; i++) {
 			shenfenzhengzhen.add(" ");
@@ -48,7 +49,7 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 
 		if (searchInfo.getOsinumber().equalsIgnoreCase("1")) {
 			zhengze(osinumber, "\\s\\d{11}\\s");
-			osinumber.set(0,osinumber.get(0).replaceAll("\\s", ""));
+			osinumber.set(0, osinumber.get(0).replaceAll("\\s", ""));
 			zhengze(hangban, "[A-Z][A-Z]\\d{3,4}");
 			sshang = sshang + hangban.get(0) + "Y";
 			osihang = osihang + "osi " + hangban.get(0).substring(0, 2)
@@ -72,8 +73,9 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 				nmhang = nmhang + "1" + as[0].trim();
 				nmhang.trim();
 				ssrhang = ssrhang + "ssr foid "
-						+ hangban.get(0).substring(0, 2) + " hk/ni" + as[3].substring(1,as[3].length())
-						+ "/p" + (i + 1) + "\n";
+						+ hangban.get(0).substring(0, 2) + " hk/ni"
+						+ as[3].substring(1, as[3].length()) + "/p" + (i + 1)
+						+ "\n";
 			}
 
 			shixianhang = shixianhang();
@@ -121,14 +123,18 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 				ssrhang = ssrhang + "ssr foid "
 						+ hangban.get(0).substring(0, 2) + " hk/ni";
 			}
-			
+
 			osihang = osihang + "osi " + hangban.get(0).substring(0, 2)
-					+ " ctct" + searchInfo.getOsinumber();
-			
+					+ " ctct" + searchInfo.getOsinumber().substring(0, 11);
+
 			shixianhang = shixianhang();
-			
+
+			rmkhang = "rmk aj auth "
+					+ searchInfo.getOsinumber().substring(11, 17);
+
 			ssmessage = sshang + "\n" + nmhang.trim() + "\n" + ssrhang
-					+ osihang + "\n" + shixianhang + "\\";
+					+ osihang + "\n" + shixianhang + "\n" + rmkhang + "\n"
+					+ "\\";
 		}
 		shenfenzhengzhen.clear();
 		return "success";
@@ -145,7 +151,7 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 		String time = timedf.format(calendar.getTime());
 		int a = Integer.parseInt(time);
 		a = a + 3;
-		shixianhang = "tktl/" + String.valueOf(a) + "00/./pek460" + "\n";
+		shixianhang = "tktl/" + String.valueOf(a) + "00/./pek460";
 		return shixianhang;
 	}
 
@@ -158,7 +164,7 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 		String yuefen = shijian.get(0).substring(5, 7);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM");
 		Date date = simpleDateFormat.parse(yuefen);
-		simpleDateFormat = new SimpleDateFormat("MMMM",Locale.US);
+		simpleDateFormat = new SimpleDateFormat("MMMM", Locale.US);
 		yuefen = simpleDateFormat.format(date).substring(0, 3);
 		return yuefen;
 	}
@@ -181,7 +187,7 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 			list.add(matcher.group().trim());
 		}
 	}
-	
+
 	@Override
 	public Object getModel() {
 		return searchInfo;
