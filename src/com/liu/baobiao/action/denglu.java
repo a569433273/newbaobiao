@@ -36,10 +36,6 @@ public class denglu extends ActionSupport implements ModelDriven<Object> {
 			return "faild";
 		}
 		
-		if (searchInfo.getUsername() == null) {
-			return "faild";
-		}
-
 		if (user.getPassword().equalsIgnoreCase(searchInfo.getPassword())) {
 			return "success";
 		} else {
