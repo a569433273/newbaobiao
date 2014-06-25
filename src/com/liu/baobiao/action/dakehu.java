@@ -204,7 +204,7 @@ public class dakehu extends ActionSupport implements ModelDriven<Object> {
 		double a = Integer.valueOf(chupiaojia.get(0)) * 0.97;
 		zhichujine = df.format(a + Integer.valueOf(shuifei.get(0)));
 
-		lirun = df.format(Integer.valueOf(shishou)
+		lirun = df.format(Double.parseDouble(shishou)
 				- (a + Integer.valueOf(shuifei.get(0))));
 	}
 
