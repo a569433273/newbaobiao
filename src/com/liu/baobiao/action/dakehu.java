@@ -201,7 +201,7 @@ public class dakehu extends ActionSupport implements ModelDriven<Object> {
 	 */
 	private void formatjine() {
 		DecimalFormat df = new DecimalFormat("#.00");
-		double a = Integer.valueOf(chupiaojia.get(0)) * 0.97;
+		double a = Integer.valueOf(chupiaojia.get(0)) * 0.98;
 		zhichujine = df.format(a + Integer.valueOf(shuifei.get(0)));
 
 		lirun = df.format(Double.parseDouble(shishou)
