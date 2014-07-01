@@ -25,14 +25,15 @@
 			</tr>
 			<tr>
 				<td>采购商：<select name="caigoushang" id="caigoushang"
-					onchange="getcaigoushang(this.options[this.options.selectedIndex].text)">
-						<option value="1">二连浩特</option>
-						<option value="2">中体国旅</option>
-				</select> <script type="text/javascript">
-					function getcaigoushang(s) {
-						document.getElementById("nameofcaigoushang").value = s;
-					}
-				</script>
+					onchange="getcaigoushang(this.options[this.options.selectedIndex].text)"></select>
+					<script type="text/javascript" src="js/caigoushang.js" charset="gbk"></script>
+					<script type="text/javascript">
+						initcaigoushangsdakehu(document
+								.getElementById("caigoushang"));
+						function getcaigoushang(s) {
+							document.getElementById("nameofcaigoushang").value = s;
+						}
+					</script>
 				</td>
 				<td>实收：<input type="text" name="noordidshishou"
 					id="noordidshishou" /></td>
