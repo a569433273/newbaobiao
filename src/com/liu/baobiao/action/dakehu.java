@@ -110,7 +110,7 @@ public class dakehu extends ActionSupport implements ModelDriven<Object> {
 		} else {
 			shishou = searchInfo.getNoordidshishou();
 			caigoushang = searchInfo.getNameofcaigoushang();
-			ordid = "";
+			ordid = "线下大客户";
 		}
 
 		zhengze(chengjiriqi, "\\d{2}[A-Z]{3}");
@@ -200,8 +200,13 @@ public class dakehu extends ActionSupport implements ModelDriven<Object> {
 	 * @author 刘健
 	 */
 	private void formatjine() {
+		double a = 0.0;
 		DecimalFormat df = new DecimalFormat("#.00");
-		double a = Integer.valueOf(chupiaojia.get(0)) * 0.98;
+		if (hangkonggongsi == "CA") {
+			a = Integer.valueOf(chupiaojia.get(0)) * 0.98;
+		} else {
+			a = Integer.valueOf(chupiaojia.get(0)) * 0.97;
+		}
 		zhichujine = df.format(a + Integer.valueOf(shuifei.get(0)));
 
 		lirun = df.format(Double.parseDouble(shishou)
