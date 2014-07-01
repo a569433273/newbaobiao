@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CRS.CommandSet.AV1.2>
+	<Item>
+		<ID>0</ID>
+		<FlightID>00</FlightID>
+		<ElementNo>1</ElementNo>
+		<Carrier>CA</Carrier>
+		<FlightNo>984</FlightNo>
+		<ShareCarrier/>
+		<ShareFlight/>
+		<BoardPoint>PEK</BoardPoint>
+		<BoardPointAT></BoardPointAT>
+		<OffPoint>PVG</OffPoint>
+		<OffPointAT></OffPointAT>
+		<DepartureDate>2009-06-18</DepartureDate>
+		<DepartureTime>07:20</DepartureTime>
+		<ArrivalDate>2009-06-18</ArrivalDate>
+		<ArrivalTime>09:30</ArrivalTime>
+		<Aircraft>321</Aircraft>
+		<AirportTax>50</AirportTax>
+		<Meal>S</Meal>
+		<ViaPort>0</ViaPort>
+		<ETicket>E</ETicket>
+		<ASR/>
+		<LinkLevel>DS#</LinkLevel>
+		<Classes>
+			<Class Code="F" Seat="7" Price="1700.00"/>
+			<Class Code="A" Seat="6" Price="0"/>
+			<Class Code="Y" Seat="A" Price="1130.00"/>
+			<Class Code="B" Seat="A" Price="1040.00"/>
+			<Class Code="M" Seat="A" Price="990.00"/>
+			<Class Code="H" Seat="A" Price="950.00"/>
+			<Class Code="K" Seat="A" Price="900.00"/>
+			<Class Code="L" Seat="A" Price="860.00"/>
+			<Class Code="Q" Seat="A" Price="770.00"/>
+			<Class Code="G" Seat="A" Price="680.00"/>
+			<Class Code="S" Seat="A" Price="0"/>
+			<Class Code="N" Seat="Q" Price="0"/>
+			<Class Code="V" Seat="A" Price="630.00"/>
+			<Class Code="U" Seat="A" Price="590.00"/>
+			<Class Code="W" Seat="A" Price="0"/>
+			<Class Code="T" Seat="A" Price="0"/>
+			<Class Code="E" Seat="Q" Price="0"/>
+		</Classes>
+		<FuelSurTax>0</FuelSurTax>
+		<TPM>1178</TPM>
+		<YClassPrice>1130</YClassPrice>
+	</Item>
+	<NearFlightDate>2009-09-25</NearFlightDate>
+</CRS.CommandSet.AV1.2>
