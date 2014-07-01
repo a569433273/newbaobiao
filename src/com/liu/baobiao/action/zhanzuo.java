@@ -81,7 +81,7 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 			shixianhang = shixianhang();
 
 			ssmessage = sshang + "\n" + nmhang.trim() + "\n" + ssrhang
-					+ osihang + "\n" + shixianhang + "\\";
+					+ osihang + "\n" + shixianhang + "\n" + "\\";
 		} else {
 			zhengze(hangban, "[A-Z][A-Z]\\d{3,4}");
 			sshang = sshang + hangban.get(0) + "Y";
