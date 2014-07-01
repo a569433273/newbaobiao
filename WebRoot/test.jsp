@@ -20,26 +20,45 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<title>jquery解析xml</title>
+<title>jquery解析xml</title>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript">
-    $(function(){
-        $.post('book.xml',function(data){
-            //查找所有的book节点
-            var s="";
-            $(data).find('Item').each(function(i){
-                var id=$(this).children('ID').text;
-                var name=$(this).children('Carrier').text();
-                var author=$(this).children('FlightNo').text();
-                var price=$(this).children('DepartureDate').text();
-                s+=id+"&nbsp;&nbsp;&nbsp;&nbsp;"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+author+"&nbsp;&nbsp;&nbsp;&nbsp;"+price+"<br>";
-            });
-            $('#mydiv').html(s);
-        });
-    });
+	$(function() {
+		$.post('book.xml', function(data) {
+			//查找所有的book节点
+			var s = "";
+			var t="";
+			$(data).find('Item')
+					.each(
+							function() {
+								var id = $(this).children('ID').text();
+								var hangkonggongsi = $(this)
+										.children('Carrier').text();
+								var hangbanhao = $(this).children('FlightNo')
+										.text();
+								$(this).children('Classes').children('Class').each(function(){
+									var cangwei = $(this).attr("Code");
+									var price = $(this).attr("Price");
+									var zuowei = $(this).attr("Seat");
+									var zuoweishu = 0;
+									if (zuowei == "A"&&price != 0) {
+										zuoweishu = 9;
+										t += "<tr><td>" + cangwei + "</td><td>" + zuoweishu + "</td></tr>";
+									} else if (zuowei == "S"|| zuowei == "Q") {
+										zuoweishu = 0;
+									} else if (price != 0){
+										zuoweishu = zuowei;
+										t += "<tr><td>" + cangwei + "</td><td>" + zuoweishu + "</td></tr>";
+									}
+									
+								});
+								s += "<table><tr><td>" + id + "</td><td>" + hangkonggongsi + "</td></tr>" + t + "</table>";
+							});
+			$('#mydiv').html(s);
+		});
+	});
 </script>
 </head>
 <body>
-    <div id='mydiv'></div>
+	<div id='mydiv'></div>
 </body>
-	
