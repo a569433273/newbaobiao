@@ -129,7 +129,7 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 
 			shixianhang = shixianhang();
 
-			rmkhang = "rmk aj auth "
+			rmkhang = "rmk tj auth "
 					+ searchInfo.getOsinumber().substring(11, 17);
 
 			ssmessage = sshang + "\n" + nmhang.trim() + "\n" + ssrhang
