@@ -30,8 +30,6 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 	private List<String> shenfenzhengzhen = new ArrayList<String>();
 	private List<String> osinumber = new ArrayList<String>();
 
-	private Calendar calendar = Calendar.getInstance();
-
 	private String ssmessage = "";
 
 	public String execute() throws Exception {
@@ -146,12 +144,11 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 	 * @author ¡ıΩ°
 	 */
 	private String shixianhang() {
-		String shixianhang;
+		Calendar calendar = Calendar.getInstance();
 		DateFormat timedf = new SimpleDateFormat("HH");
 		String time = timedf.format(calendar.getTime());
-		int a = Integer.parseInt(time);
-		a = a + 3;
-		shixianhang = "tktl/" + String.valueOf(a) + "00/./pek460";
+		int a = Integer.parseInt(time) + 3;
+		String shixianhang = "tktl/" + String.valueOf(a) + "00/./pek460";
 		return shixianhang;
 	}
 
