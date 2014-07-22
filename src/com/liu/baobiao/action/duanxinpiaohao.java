@@ -85,7 +85,7 @@ public class duanxinpiaohao extends ActionSupport implements ModelDriven<Object>
 					+ qifeijichang + qifeihangzhanlou.getText() + "("
 					+ qifeishijian.getText() + "起飞)-" + daodajichang
 					+ daodahangzhanlou.getText() + "已出票，票号" + piaohao.getText()
-					+ ",总价￥" + zongjia + ",祝旅途愉快!窠浦航空";
+					+ ",总价￥" + zongjia + ",祝旅途愉快!";
 			System.out.println(duanxin);
 		} catch (Exception e) {
 			// TODO: handle exception

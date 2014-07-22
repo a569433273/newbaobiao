@@ -104,7 +104,7 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 			for (int i = 0; i < piaohao.size(); i++) {
 				duanxin += piaohao.get(i) + ",";
 			}
-			duanxin += ",×Ü¼Û£¤" + zongjia + ",×£ÂÃÍ¾Óä¿ì!ñ½ÆÖº½¿Õ";
+			duanxin += ",×Ü¼Û£¤" + zongjia + ",×£ÂÃÍ¾Óä¿ì!";
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
