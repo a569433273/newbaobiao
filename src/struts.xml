@@ -34,6 +34,14 @@
 		<action name="zhanzuo" class="zhanzuo">
 			<result name="success">/sszhanzuo.jsp</result>
 		</action>
+		
+		<action name="duanxinpnr" class="duanxinpnr">
+			<result name="success">/duanxin.jsp</result>
+		</action>
+		
+		<action name="duanxinpiaohao" class="duanxinpiaohao">
+			<result name="success">/duanxin.jsp</result>
+		</action>
 	</package>
 </struts>
 	

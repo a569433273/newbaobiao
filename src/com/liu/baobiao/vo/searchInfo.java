@@ -3,7 +3,7 @@ package com.liu.baobiao.vo;
 public class searchInfo {
 	private String username;
 	private String password;
-	
+
 	private String pnrchaxun;
 	private String ordidchaxun;
 
@@ -11,10 +11,10 @@ public class searchInfo {
 	private String ordid;
 	private String noordidshishou;
 	private String nameofcaigoushang;
-	
+
 	private String creatPNRmessage;
 	private String osinumber;
-	
+
 	private String xid;
 	private String xcaigoushang;
 	private String xxingming;
@@ -32,11 +32,13 @@ public class searchInfo {
 	private String xlirun;
 	private String xchupiaoriqi;
 	private String xbeizhu;
-	
+
 	private String feipiaozhangshu;
-	
+
 	private String chupiaoriqi;
-	
+
+	private String duanxinmessage;
+
 	public String getUsername() {
 		return username;
 	}
@@ -60,7 +62,7 @@ public class searchInfo {
 	public void setPnrchaxun(String pnrchaxun) {
 		this.pnrchaxun = pnrchaxun;
 	}
-	
+
 	public String getOrdidchaxun() {
 		return ordidchaxun;
 	}
@@ -84,7 +86,7 @@ public class searchInfo {
 	public void setOrdid(String ordid) {
 		this.ordid = ordid;
 	}
-	
+
 	public String getNoordidshishou() {
 		return noordidshishou;
 	}
@@ -267,5 +269,13 @@ public class searchInfo {
 
 	public void setChupiaoriqi(String chupiaoriqi) {
 		this.chupiaoriqi = chupiaoriqi;
+	}
+
+	public String getDuanxinmessage() {
+		return duanxinmessage;
+	}
+
+	public void setDuanxinmessage(String duanxinmessage) {
+		this.duanxinmessage = duanxinmessage;
 	}
 }

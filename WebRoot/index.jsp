@@ -49,7 +49,7 @@
 						</li>
 						<li><a href="sanke.html" target="right2_tt">散客</a>
 						</li>
-						<li><a href="#">淘宝/去哪儿店</a>
+						<li><a href="duanxin.jsp" target="right2_tt">生成短信</a>
 						</li>
 						<li><a href="dakehunoordid.jsp" target="right2_tt">线下大客户</a>
 						</li>

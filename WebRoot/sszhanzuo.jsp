@@ -23,7 +23,7 @@
 </head>
 <s:set name="ssmessage" value="ssmessage"></s:set>
 <body>
-	<form action="zhanzuo.action" name="mmform" id="mmform" method="post">
+	<form action="zhanzuo.action" name="zhanzuo" id="zhanzuo" method="post">
 		<textarea name="creatPNRmessage" id="creatPNRmessage" rows="9"
 			cols="88"><s:property value="ssmessage" /></textarea>
 		<br /> 联系电话：<select name="osinumber" id="osinumber">
