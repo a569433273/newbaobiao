@@ -31,6 +31,10 @@
 		document.duanxin.action = "duanxinpiaohao";
 		document.duanxin.submit();
 	}
+   function faduanxin() {
+		document.duanxin.action = "faduanxin";
+		document.duanxin.submit();
+	}
 </script>
 <body>
 	<form action="" name="duanxin" id="duanxin" method="post">
@@ -39,6 +43,9 @@
 			<br/>
 		<input type="submit" name="submit" class="button" value="PNR" onclick="duanxinpnr()"/>
 		<input type="submit" name="submit" class="button" value="票号" onclick="duanxinpiaohao()"/>
+		<br/>
+		手机号：<input type="text" name="shoujihao" id="shoujihao"/>
+		<input type="submit" name="submit" class="button" value="发短信" onclick="faduanxin()"/>
 	</form>
 </body>
 </html>

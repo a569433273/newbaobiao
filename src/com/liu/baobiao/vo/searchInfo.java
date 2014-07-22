@@ -38,6 +38,7 @@ public class searchInfo {
 	private String chupiaoriqi;
 
 	private String duanxinmessage;
+	private String shoujihao;
 
 	public String getUsername() {
 		return username;
@@ -277,5 +278,13 @@ public class searchInfo {
 
 	public void setDuanxinmessage(String duanxinmessage) {
 		this.duanxinmessage = duanxinmessage;
+	}
+
+	public String getShoujihao() {
+		return shoujihao;
+	}
+
+	public void setShoujihao(String shoujihao) {
+		this.shoujihao = shoujihao;
 	}
 }

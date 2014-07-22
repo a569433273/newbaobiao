@@ -42,6 +42,10 @@
 		<action name="duanxinpiaohao" class="duanxinpiaohao">
 			<result name="success">/duanxin.jsp</result>
 		</action>
+		
+		<action name="faduanxin" class="faduanxin">
+			<result name="success">/duanxin.jsp</result>
+		</action>
 	</package>
 </struts>
 	

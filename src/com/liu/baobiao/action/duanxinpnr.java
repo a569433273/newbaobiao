@@ -33,7 +33,6 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 	@Override
 	public String execute() throws Exception {
 		duanxin = "";
-		System.out.println("1");
 		String identity = "<?xml version='1.0' encoding='utf-8'?><Identity_1_0><ABEConnectionString>User=liujian;Password=123456;Server=119.161.188.35;Port=350;MaxPages=20;</ABEConnectionString></Identity_1_0>";
 		String request = "<?xml version='1.0' encoding='UTF-8'?><ABE_RTPNR_1_0><PNR>"
 				+ searchInfo.getDuanxinmessage().trim()
@@ -43,7 +42,6 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 		String returnString = service.getServiceSoap().abeSubmit(identity,
 				request, filter);
 		try {
-			System.out.println("2");
 			Document document = DocumentHelper.parseText(returnString);
 			Element rootElement = document.getRootElement();
 
@@ -107,7 +105,6 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 				duanxin += piaohao.get(i) + ",";
 			}
 			duanxin += ",×Ü¼Û£¤" + zongjia + ",×£ÂÃÍ¾Óä¿ì!ñ½ÆÖº½¿Õ";
-			System.out.println(duanxin);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
