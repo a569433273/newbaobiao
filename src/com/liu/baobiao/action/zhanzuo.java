@@ -70,9 +70,10 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 				String[] as = string.split("\t");
 				nmhang = nmhang + "1" + as[0].trim();
 				nmhang.trim();
+				as[3] = as[3].trim();
 				ssrhang = ssrhang + "ssr foid "
 						+ hangban.get(0).substring(0, 2) + " hk/ni"
-						+ as[3].substring(1, as[3].length()) + "/p" + (i + 1)
+						+ as[3].substring(0, as[3].length()) + "/p" + (i + 1)
 						+ "\n";
 			}
 
