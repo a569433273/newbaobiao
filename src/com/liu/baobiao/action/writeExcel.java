@@ -119,7 +119,11 @@ public class writeExcel extends ActionSupport implements ModelDriven {
 					Integer.valueOf(hkgs.get(i - begin).getPiaomianjia()));
 			basicnumber(i + 2, 10,
 					Integer.valueOf(hkgs.get(i - begin).getShuifei()));
-			basicstring(i + 2, 11, "3%");
+			if (hkgs.get(i).getHangkonggongsi().equals("CA")) {
+				basicstring(i + 2, 11, "2%");
+			} else {
+				basicstring(i + 2, 11, "3%");
+			}
 			basicdouble(i + 2, 12,
 					Double.valueOf(hkgs.get(i - begin).getZhichujine()));
 			basicdouble(i + 2, 13,
