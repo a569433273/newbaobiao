@@ -42,14 +42,6 @@ public class faduanxin extends ActionSupport implements ModelDriven<Object> {
 		return searchInfo;
 	}
 
-	public searchInfo getSearchInfo() {
-		return searchInfo;
-	}
-
-	public void setSearchInfo(searchInfo searchInfo) {
-		this.searchInfo = searchInfo;
-	}
-
 	public String getDuanxin() {
 		return duanxin;
 	}

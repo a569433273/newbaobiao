@@ -140,9 +140,9 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	/**
-	 * tktlï¿½ï¿½ï¿½ï¿½
+	 * tktlÉú³É
 	 * 
-	 * @author ï¿½ï¿½ï¿½ï¿½
+	 * @author Áõ½¡
 	 */
 	private String shixianhang() {
 		Calendar calendar = Calendar.getInstance();
@@ -154,9 +154,9 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	/**
-	 * ï¿½ï¿½Ò³Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½04×ªï¿½ï¿½Ó¢ï¿½ï¿½Í¨ï¿½Ã·ï¿½ï¿½ï¿½
+	 * ÍøÒ³Ê±¼äÀàËÆ04×ª³ÉÓ¢ÎÄÍ¨ÓÃ·½·¨
 	 * 
-	 * @author ï¿½ï¿½ï¿½ï¿½
+	 * @author Áõ½¡
 	 */
 	private String shijianzhuanyuefen() throws ParseException {
 		String yuefen = shijian.get(0).substring(5, 7);
@@ -168,13 +168,13 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	/**
-	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½Í¨ï¿½Ã·ï¿½ï¿½ï¿½
+	 * ÕýÔò±í´ïÊ½Í¨ÓÃ·½·¨
 	 * 
-	 * @author ï¿½ï¿½ï¿½ï¿½
+	 * @author Áõ½¡
 	 * @param list
-	 *            ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+	 *            ´æ´¢ÕýÔò±í´ïÊ½½á¹ûµÄÁÐ±í
 	 * @param zzbiaodashi
-	 *            Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+	 *            Æ¥ÅäµÄÕýÔò±í´ïÊ½
 	 */
 	private void zhengze(List<String> list, String zzbiaodashi) {
 		String creatPNRmessage = searchInfo.getCreatPNRmessage();
@@ -189,14 +189,6 @@ public class zhanzuo extends ActionSupport implements ModelDriven<Object> {
 	@Override
 	public Object getModel() {
 		return searchInfo;
-	}
-
-	public searchInfo getSearchInfo() {
-		return searchInfo;
-	}
-
-	public void setSearchInfo(searchInfo searchInfo) {
-		this.searchInfo = searchInfo;
 	}
 
 	public String getSsmessage() {

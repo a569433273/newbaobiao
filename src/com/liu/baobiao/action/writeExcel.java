@@ -27,14 +27,14 @@ public class writeExcel extends ActionSupport implements ModelDriven {
 
 	private searchInfo searchInfo = new searchInfo();
 
-	private Dakehu dakehu;
+	@Resource
 	private DakehuDao dakehuDao;
 
 	private List<Dakehu> cadakehus;
 	private List<Dakehu> zhdakehus;
-	
+
 	public int beginI = 0;
-	
+
 	public HSSFWorkbook writeworkbook = new HSSFWorkbook();
 	public HSSFSheet writesheet = writeworkbook.createSheet();
 	public HSSFFont font = writeworkbook.createFont();
@@ -45,31 +45,33 @@ public class writeExcel extends ActionSupport implements ModelDriven {
 		FileOutputStream fileOutputStream = new FileOutputStream(
 				"D:\\Apache2.2\\htdocs\\Test\\upload\\"
 						+ searchInfo.getChupiaoriqi() + ".xls");
-		writesheet.setColumnWidth((short)0, (short)2755);
-		writesheet.setColumnWidth((short)2, (short)2355);
-		writesheet.setColumnWidth((short)3, (short)5255);
-		writesheet.setColumnWidth((short)6, (short)1255);
-		writesheet.setColumnWidth((short)10, (short)1755);
-		writesheet.setColumnWidth((short)12, (short)3355);
-		
+		writesheet.setColumnWidth((short) 0, (short) 2755);
+		writesheet.setColumnWidth((short) 2, (short) 2355);
+		writesheet.setColumnWidth((short) 3, (short) 5255);
+		writesheet.setColumnWidth((short) 6, (short) 1255);
+		writesheet.setColumnWidth((short) 10, (short) 1755);
+		writesheet.setColumnWidth((short) 12, (short) 3355);
+
 		font.setFontName("宋体");
 		font.setFontHeightInPoints((short) 12);
-		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);//字体加粗
-		
-		cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);//居中
+		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);// 字体加粗
+
+		cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 居中
 		cellStyle.setFont(font);
-		cellStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN); //下边框
-		cellStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);//左边框
-		cellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);//上边框
-		cellStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);//右边框
-		
+		cellStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN); // 下边框
+		cellStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);// 左边框
+		cellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);// 上边框
+		cellStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);// 右边框
+
 		exceltaitou();
 
-			cadakehus = dakehuDao.findBychupiaoriqiandhangkonggongsi(searchInfo.getChupiaoriqi(),"CA");
-			zhdakehus = dakehuDao.findBychupiaoriqiandhangkonggongsi(searchInfo.getChupiaoriqi(),"ZH");
-			
-			writehkgs(beginI, cadakehus);
-			writehkgs(beginI, zhdakehus);
+		cadakehus = dakehuDao.findBychupiaoriqiandhangkonggongsi(
+				searchInfo.getChupiaoriqi(), "CA");
+		zhdakehus = dakehuDao.findBychupiaoriqiandhangkonggongsi(
+				searchInfo.getChupiaoriqi(), "ZH");
+
+		writehkgs(beginI, cadakehus);
+		writehkgs(beginI, zhdakehus);
 		writeworkbook.write(fileOutputStream);
 		fileOutputStream.flush();
 		fileOutputStream.close();
@@ -77,7 +79,7 @@ public class writeExcel extends ActionSupport implements ModelDriven {
 	}
 
 	private void exceltaitou() {
-		String riqi = searchInfo.getChupiaoriqi().substring(4, 6) + "月"; 
+		String riqi = searchInfo.getChupiaoriqi().substring(4, 6) + "月";
 		basicstring(0, 0, riqi);
 		basicstring(1, 0, "订单号");
 		basicstring(1, 1, "采购商");
@@ -98,34 +100,38 @@ public class writeExcel extends ActionSupport implements ModelDriven {
 		basicstring(1, 16, "人数");
 	}
 
-	//航空公司写入excel通用
+	// 航空公司写入excel通用
 	public void writehkgs(int begin, List<Dakehu> hkgs) {
 		if (hkgs.size() > 0) {
 			beginI += hkgs.size() + 2;
 		}
-		for (int i = begin; i < hkgs.size()+begin; i++) {
-			basicstring(i + 2, 0, hkgs.get(i-begin).getOrdid());
-			basicstring(i + 2, 1, hkgs.get(i-begin).getCaigoushang());
-			basicstring(i + 2, 2, hkgs.get(i-begin).getXingming());
-			basicstring(i + 2, 3, hkgs.get(i-begin).getPnr());
-			basicstring(i + 2, 4, hkgs.get(i-begin).getPiaohao());
-			basicstring(i + 2, 5, hkgs.get(i-begin).getHangcheng());
-			basicstring(i + 2, 6, hkgs.get(i-begin).getHangban());
-			basicstring(i + 2, 7, hkgs.get(i-begin).getCangwei());
-			basicstring(i + 2, 8, hkgs.get(i-begin).getChengjiriqi());
+		for (int i = begin; i < hkgs.size() + begin; i++) {
+			basicstring(i + 2, 0, hkgs.get(i - begin).getOrdid());
+			basicstring(i + 2, 1, hkgs.get(i - begin).getCaigoushang());
+			basicstring(i + 2, 2, hkgs.get(i - begin).getXingming());
+			basicstring(i + 2, 3, hkgs.get(i - begin).getPnr());
+			basicstring(i + 2, 4, hkgs.get(i - begin).getPiaohao());
+			basicstring(i + 2, 5, hkgs.get(i - begin).getHangcheng());
+			basicstring(i + 2, 6, hkgs.get(i - begin).getHangban());
+			basicstring(i + 2, 7, hkgs.get(i - begin).getCangwei());
+			basicstring(i + 2, 8, hkgs.get(i - begin).getChengjiriqi());
 			basicnumber(i + 2, 9,
-					Integer.valueOf(hkgs.get(i-begin).getPiaomianjia()));
-			basicnumber(i + 2, 10, Integer.valueOf(hkgs.get(i-begin).getShuifei()));
+					Integer.valueOf(hkgs.get(i - begin).getPiaomianjia()));
+			basicnumber(i + 2, 10,
+					Integer.valueOf(hkgs.get(i - begin).getShuifei()));
 			basicstring(i + 2, 11, "3%");
 			basicdouble(i + 2, 12,
-					Double.valueOf(hkgs.get(i-begin).getZhichujine()));
-			basicdouble(i + 2, 13, Double.valueOf(hkgs.get(i-begin).getShishou()));
-			basicdouble(i + 2, 14, Double.valueOf(hkgs.get(i-begin).getLirun()));
-			basicstring(i + 2, 15, hkgs.get(i-begin).getBeizhu());
-			basicnumber(i + 2, 16, Integer.valueOf(hkgs.get(i-begin).getRenshu()));
+					Double.valueOf(hkgs.get(i - begin).getZhichujine()));
+			basicdouble(i + 2, 13,
+					Double.valueOf(hkgs.get(i - begin).getShishou()));
+			basicdouble(i + 2, 14,
+					Double.valueOf(hkgs.get(i - begin).getLirun()));
+			basicstring(i + 2, 15, hkgs.get(i - begin).getBeizhu());
+			basicnumber(i + 2, 16,
+					Integer.valueOf(hkgs.get(i - begin).getRenshu()));
 		}
 	}
-	
+
 	// 给单元格赋值,字符串的
 	public void basicstring(int rownum, int cellnum, String value) {
 		HSSFRow hssfRow = writesheet.createRow((short) rownum);
@@ -157,23 +163,6 @@ public class writeExcel extends ActionSupport implements ModelDriven {
 		hssfCell.setEncoding(HSSFCell.ENCODING_UTF_16);
 		hssfCell.setCellValue(value);
 	}
-	
-	public Dakehu getDakehu() {
-		return dakehu;
-	}
-
-	public void setDakehu(Dakehu dakehu) {
-		this.dakehu = dakehu;
-	}
-
-	public DakehuDao getDakehuDao() {
-		return dakehuDao;
-	}
-
-	@Resource
-	public void setDakehuDao(DakehuDao dakehuDao) {
-		this.dakehuDao = dakehuDao;
-	}
 
 	@Override
 	public Object getModel() {
@@ -181,11 +170,4 @@ public class writeExcel extends ActionSupport implements ModelDriven {
 		return searchInfo;
 	}
 
-	public searchInfo getSearchInfo() {
-		return searchInfo;
-	}
-
-	public void setSearchInfo(searchInfo searchInfo) {
-		this.searchInfo = searchInfo;
-	}
 }

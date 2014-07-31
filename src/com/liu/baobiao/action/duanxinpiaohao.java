@@ -18,10 +18,12 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("all")
 @Component("duanxinpiaohao")
-public class duanxinpiaohao extends ActionSupport implements ModelDriven<Object> {
+public class duanxinpiaohao extends ActionSupport implements
+		ModelDriven<Object> {
 
 	private searchInfo searchInfo = new searchInfo();
 
+	@Resource
 	private FlightnameDao flightnameDao;
 
 	private String duanxin = "";
@@ -64,9 +66,11 @@ public class duanxinpiaohao extends ActionSupport implements ModelDriven<Object>
 			}
 			Element daoda = rootElement.element("DST");
 
-			String qifeijichang = flightnameDao.findbysanzima(qifei.getText()).getJichang();
+			String qifeijichang = flightnameDao.findbysanzima(qifei.getText())
+					.getJichang();
 
-			String daodajichang = flightnameDao.findbysanzima(daoda.getText()).getJichang();
+			String daodajichang = flightnameDao.findbysanzima(daoda.getText())
+					.getJichang();
 
 			String zongjia = "";
 			Element zongjiarootElement = rootElement.element("FN");
@@ -74,7 +78,13 @@ public class duanxinpiaohao extends ActionSupport implements ModelDriven<Object>
 					.hasNext();) {
 				Element zongjiaElement = (Element) it.next();
 				if (zongjiaElement.attribute("Type").getText().equals("A")) {
-					zongjia = zongjiaElement.attribute("Value").getText().substring(0, zongjiaElement.attribute("Value").getText().length() -3);
+					zongjia = zongjiaElement
+							.attribute("Value")
+							.getText()
+							.substring(
+									0,
+									zongjiaElement.attribute("Value").getText()
+											.length() - 3);
 				}
 			}
 
@@ -102,23 +112,6 @@ public class duanxinpiaohao extends ActionSupport implements ModelDriven<Object>
 	public duanxinpiaohao() {
 	}
 
-	public searchInfo getSearchInfo() {
-		return searchInfo;
-	}
-
-	public void setSearchInfo(searchInfo searchInfo) {
-		this.searchInfo = searchInfo;
-	}
-
-	public FlightnameDao getFlightnameDao() {
-		return flightnameDao;
-	}
-
-	@Resource
-	public void setFlightnameDao(FlightnameDao flightnameDao) {
-		this.flightnameDao = flightnameDao;
-	}
-
 	public String getDuanxin() {
 		return duanxin;
 	}
@@ -126,5 +119,4 @@ public class duanxinpiaohao extends ActionSupport implements ModelDriven<Object>
 	public void setDuanxin(String duanxin) {
 		this.duanxin = duanxin;
 	}
-
 }

@@ -14,6 +14,7 @@ import com.liu.baobiao.model.Dakehu;
 @SuppressWarnings("all")
 public class DakehuDaoImpl implements DakehuDao {
 
+	@Resource
 	private HibernateTemplate hibernateTemplate;
 
 	@Override
@@ -41,47 +42,46 @@ public class DakehuDaoImpl implements DakehuDao {
 		return dakehus;
 	}
 
-	public HibernateTemplate getHibernateTemplate() {
-		return hibernateTemplate;
-	}
-
-	@Resource
-	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernateTemplate = hibernateTemplate;
-	}
-
 	@Override
 	public List<Dakehu> findBypnr(String pnr) {
 		// TODO Auto-generated method stub
-		List<Dakehu> dakehus = hibernateTemplate.find("from Dakehu d where d.pnr = '" + pnr + "'");
+		List<Dakehu> dakehus = hibernateTemplate
+				.find("from Dakehu d where d.pnr = '" + pnr + "'");
 		return dakehus;
 	}
 
 	@Override
 	public List<Dakehu> findByordid(String ordid) {
 		// TODO Auto-generated method stub
-		List<Dakehu> dakehus = hibernateTemplate.find("from Dakehu d where d.ordid = '" + ordid + "'");
+		List<Dakehu> dakehus = hibernateTemplate
+				.find("from Dakehu d where d.ordid = '" + ordid + "'");
 		return dakehus;
 	}
 
 	@Override
-	public List<Dakehu> findBychupiaoriqiandhangkonggongsi(String chupiaoriqi,String hangkonggongsi) {
+	public List<Dakehu> findBychupiaoriqiandhangkonggongsi(String chupiaoriqi,
+			String hangkonggongsi) {
 		// TODO Auto-generated method stub
-		List<Dakehu> dakehus = hibernateTemplate.find("from Dakehu d where d.chupiaoriqi like '" + chupiaoriqi + "%' and hangkonggongsi = '" + hangkonggongsi +"' order by caigoushang");
+		List<Dakehu> dakehus = hibernateTemplate
+				.find("from Dakehu d where d.chupiaoriqi like '" + chupiaoriqi
+						+ "%' and hangkonggongsi = '" + hangkonggongsi
+						+ "' order by caigoushang");
 		return dakehus;
 	}
 
 	@Override
 	public List<Dakehu> findBycaigoushang(String caigoushang) {
 		// TODO Auto-generated method stub
-		List<Dakehu> dakehus = hibernateTemplate.find("from Dakehu d where d.caigoushang = '" + caigoushang + "'");
+		List<Dakehu> dakehus = hibernateTemplate
+				.find("from Dakehu d where d.caigoushang = '" + caigoushang
+						+ "'");
 		return dakehus;
 	}
 
 	@Override
 	public Dakehu loadById(int id) {
 		// TODO Auto-generated method stub
-		Dakehu dakehu = (Dakehu)hibernateTemplate.load(Dakehu.class, id);
+		Dakehu dakehu = (Dakehu) hibernateTemplate.load(Dakehu.class, id);
 		return dakehu;
 	}
 }

@@ -14,16 +14,8 @@ import com.liu.baobiao.model.User;
 @SuppressWarnings("all")
 public class UserDaoImpl implements UserDao {
 
-	private HibernateTemplate hibernateTemplate;
-
-	public HibernateTemplate getHibernateTemplate() {
-		return hibernateTemplate;
-	}
-
 	@Resource
-	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernateTemplate = hibernateTemplate;
-	}
+	private HibernateTemplate hibernateTemplate;
 
 	@Override
 	public void save(User user) {
@@ -53,14 +45,15 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User loadById(int id) {
 		// TODO Auto-generated method stub
-		User user = (User)hibernateTemplate.load(User.class, id);
+		User user = (User) hibernateTemplate.load(User.class, id);
 		return user;
 	}
 
 	@Override
 	public User findByusername(String username) {
 		// TODO Auto-generated method stub
-		List<User> users = hibernateTemplate.find("from User u where u.username = '" + username +"'");
+		List<User> users = hibernateTemplate
+				.find("from User u where u.username = '" + username + "'");
 		return users.get(0);
 	}
 

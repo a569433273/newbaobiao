@@ -11,21 +11,15 @@ import com.liu.baobiao.model.Hangkonggs;
 @Component("HangkonggsDao")
 public class HangkonggsDaoImpl implements HangkonggsDao {
 
+	@Resource
 	private HibernateTemplate hibernateTemplate;
 
 	@Override
 	public Hangkonggs fingbycode(String code) {
 		// TODO Auto-generated method stub
-		Hangkonggs hangkonggs = (Hangkonggs) hibernateTemplate.load(Hangkonggs.class,code);
+		Hangkonggs hangkonggs = (Hangkonggs) hibernateTemplate.load(
+				Hangkonggs.class, code);
 		return hangkonggs;
 	}
 
-	public HibernateTemplate getHibernateTemplate() {
-		return hibernateTemplate;
-	}
-
-	@Resource
-	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernateTemplate = hibernateTemplate;
-	}
 }

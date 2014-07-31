@@ -25,7 +25,9 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 
 	private searchInfo searchInfo = new searchInfo();
 
+	@Resource
 	private HangkonggsDao hangkonggsDao;
+	@Resource
 	private FlightnameDao flightnameDao;
 
 	private String duanxin = "";
@@ -50,8 +52,8 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 			Element passengers = rootElement.element("Passengers");
 			for (Iterator it = passengers.elementIterator(); it.hasNext();) {
 				Element ssElement = (Element) it.next();
-				duanxin +=ssElement.attribute("Name").getText();
-				duanxin +=ssElement.attribute("CardNo").getText();
+				duanxin += ssElement.attribute("Name").getText();
+				duanxin += ssElement.attribute("CardNo").getText();
 				piaohao.add(ssElement.attribute("TicketNo").getText());
 			}
 			Element flightElement = rootElement.element("Flights").element(
@@ -89,18 +91,23 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 				Element zongjiaElement = (Element) it.next();
 				if (zongjiaElement.attribute("Type").getText().equals("A")) {
 					zongjia = String.valueOf(Integer.valueOf(zongjiaElement
-							.attribute("Value").getText().substring(0, zongjiaElement
-							.attribute("Value").getText().length() -3)) * piaohao.size());
+							.attribute("Value")
+							.getText()
+							.substring(
+									0,
+									zongjiaElement.attribute("Value").getText()
+											.length() - 3))
+							* piaohao.size());
 				}
 			}
-			duanxin += hangkonggongsiname
-					+ hangkonggongsi.getText() + hangbanhao.getText() + " "
+			duanxin += hangkonggongsiname + hangkonggongsi.getText()
+					+ hangbanhao.getText() + " "
 					+ hangbanshijian.getText().substring(5, 7) + "ÔÂ"
 					+ hangbanshijian.getText().substring(8, 10) + "ÈÕ"
 					+ qifeijichang + qifeihangzhanlou.getText() + "("
 					+ qifeishijian.getText() + "Æð·É)-" + daodajichang
 					+ daodahangzhanlou.getText() + "ÒÑ³öÆ±£¬Æ±ºÅ";
-//					+ ",×Ü¼Û£¤" + zongjia + ",×£ÂÃÍ¾Óä¿ì!ñ½ÆÖº½¿Õ";
+			// + ",×Ü¼Û£¤" + zongjia + ",×£ÂÃÍ¾Óä¿ì!ñ½ÆÖº½¿Õ";
 			for (int i = 0; i < piaohao.size(); i++) {
 				duanxin += piaohao.get(i) + ",";
 			}
@@ -118,32 +125,6 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	public duanxinpnr() {
-	}
-
-	public searchInfo getSearchInfo() {
-		return searchInfo;
-	}
-
-	public void setSearchInfo(searchInfo searchInfo) {
-		this.searchInfo = searchInfo;
-	}
-
-	public HangkonggsDao getHangkonggsDao() {
-		return hangkonggsDao;
-	}
-
-	@Resource
-	public void setHangkonggsDao(HangkonggsDao hangkonggsDao) {
-		this.hangkonggsDao = hangkonggsDao;
-	}
-
-	public FlightnameDao getFlightnameDao() {
-		return flightnameDao;
-	}
-
-	@Resource
-	public void setFlightnameDao(FlightnameDao flightnameDao) {
-		this.flightnameDao = flightnameDao;
 	}
 
 	public String getDuanxin() {

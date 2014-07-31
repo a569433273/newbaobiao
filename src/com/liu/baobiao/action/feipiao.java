@@ -19,30 +19,31 @@ public class feipiao extends ActionSupport implements ModelDriven<Object> {
 
 	private searchInfo searchInfo = new searchInfo();
 
-	private Dakehu 		dakehu;
-	private DakehuDao 	dakehuDao;
+	@Resource
+	private DakehuDao dakehuDao;
 
-	private int 		shengyurenshu;
+	private int shengyurenshu;
 
-	private int 		newpiaomianjia;
-	private int			newshuifei;
-	private double 		newzhichujine;
-	private int 		newshishou;
-	private double 		newlirun;
+	private int newpiaomianjia;
+	private int newshuifei;
+	private double newzhichujine;
+	private int newshishou;
+	private double newlirun;
 
-	private String 		newbeizhu;
+	private String newbeizhu;
 	private String chupiaorenyuan = "";
 
 	@Override
 	public String execute() throws Exception {
-		dakehu = dakehuDao.loadById(Integer.valueOf(searchInfo.getXid()));
-		
-		HttpServletRequest request = ServletActionContext.getRequest();
-		chupiaorenyuan = (String)request.getSession().getAttribute("yuangong");
-		
+		Dakehu dakehu = dakehuDao
+				.loadById(Integer.valueOf(searchInfo.getXid()));
 
-		int a = Integer.valueOf(dakehu.getFeipiaorenshu()) + Integer.valueOf(searchInfo.getFeipiaozhangshu());
-		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		chupiaorenyuan = (String) request.getSession().getAttribute("yuangong");
+
+		int a = Integer.valueOf(dakehu.getFeipiaorenshu())
+				+ Integer.valueOf(searchInfo.getFeipiaozhangshu());
+
 		shengyurenshu = Integer.valueOf(dakehu.getRenshu())
 				- Integer.valueOf(searchInfo.getFeipiaozhangshu());
 
@@ -53,13 +54,10 @@ public class feipiao extends ActionSupport implements ModelDriven<Object> {
 		newzhichujine = (Double.parseDouble(dakehu.getZhichujine()) / Integer
 				.valueOf(dakehu.getRenshu())) * shengyurenshu;
 		newshishou = (Integer.valueOf(dakehu.getShishou()) / Integer
-				.valueOf(dakehu.getRenshu())) * shengyurenshu+ (a * 20);
+				.valueOf(dakehu.getRenshu())) * shengyurenshu + (a * 20);
 		newlirun = (Double.parseDouble(dakehu.getLirun()) / Integer
-				.valueOf(dakehu.getRenshu()))
-				* shengyurenshu
-				+ (a * 20);
+				.valueOf(dakehu.getRenshu())) * shengyurenshu + (a * 20);
 
-		
 		newbeizhu = "void" + String.valueOf(a) + "’≈∆±";
 
 		dakehu.setPiaomianjia(String.valueOf(newpiaomianjia));
@@ -83,86 +81,5 @@ public class feipiao extends ActionSupport implements ModelDriven<Object> {
 	public Object getModel() {
 		// TODO Auto-generated method stub
 		return searchInfo;
-	}
-
-	public searchInfo getSearchInfo() {
-		return searchInfo;
-	}
-
-	public void setSearchInfo(searchInfo searchInfo) {
-		this.searchInfo = searchInfo;
-	}
-
-	public Dakehu getDakehu() {
-		return dakehu;
-	}
-
-	public void setDakehu(Dakehu dakehu) {
-		this.dakehu = dakehu;
-	}
-
-	public DakehuDao getDakehuDao() {
-		return dakehuDao;
-	}
-
-	@Resource
-	public void setDakehuDao(DakehuDao dakehuDao) {
-		this.dakehuDao = dakehuDao;
-	}
-
-	public int getShengyurenshu() {
-		return shengyurenshu;
-	}
-
-	public void setShengyurenshu(int shengyurenshu) {
-		this.shengyurenshu = shengyurenshu;
-	}
-
-	public int getNewpiaomianjia() {
-		return newpiaomianjia;
-	}
-
-	public void setNewpiaomianjia(int newpiaomianjia) {
-		this.newpiaomianjia = newpiaomianjia;
-	}
-
-	public int getNewshuifei() {
-		return newshuifei;
-	}
-
-	public void setNewshuifei(int newshuifei) {
-		this.newshuifei = newshuifei;
-	}
-
-	public int getNewshishou() {
-		return newshishou;
-	}
-
-	public void setNewshishou(int newshishou) {
-		this.newshishou = newshishou;
-	}
-
-	public String getNewbeizhu() {
-		return newbeizhu;
-	}
-
-	public void setNewbeizhu(String newbeizhu) {
-		this.newbeizhu = newbeizhu;
-	}
-
-	public double getNewzhichujine() {
-		return newzhichujine;
-	}
-
-	public void setNewzhichujine(double newzhichujine) {
-		this.newzhichujine = newzhichujine;
-	}
-
-	public double getNewlirun() {
-		return newlirun;
-	}
-
-	public void setNewlirun(double newlirun) {
-		this.newlirun = newlirun;
 	}
 }

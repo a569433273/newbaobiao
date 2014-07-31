@@ -19,18 +19,19 @@ public class xiugai extends ActionSupport implements ModelDriven<Object> {
 
 	private searchInfo searchInfo = new searchInfo();
 
-	private Dakehu dakehu;
+	@Resource
 	private DakehuDao dakehuDao;
-	
+
 	private String chupiaorenyuan = "";
 
 	@Override
 	public String execute() throws Exception {
-		
+
 		HttpServletRequest request = ServletActionContext.getRequest();
-		chupiaorenyuan = (String)request.getSession().getAttribute("yuangong");
-		
-		dakehu = dakehuDao.loadById(Integer.valueOf(searchInfo.getXid()));
+		chupiaorenyuan = (String) request.getSession().getAttribute("yuangong");
+
+		Dakehu dakehu = dakehuDao
+				.loadById(Integer.valueOf(searchInfo.getXid()));
 		dakehu.setCaigoushang(searchInfo.getXcaigoushang());
 		dakehu.setXingming(searchInfo.getXxingming());
 		dakehu.setPnr(searchInfo.getXpnr());
@@ -52,7 +53,6 @@ public class xiugai extends ActionSupport implements ModelDriven<Object> {
 		return "success";
 	}
 
-
 	public xiugai() {
 
 	}
@@ -63,29 +63,4 @@ public class xiugai extends ActionSupport implements ModelDriven<Object> {
 		return searchInfo;
 	}
 
-	public searchInfo getSearchInfo() {
-		return searchInfo;
-	}
-
-	public void setSearchInfo(searchInfo searchInfo) {
-		this.searchInfo = searchInfo;
-	}
-
-
-	public Dakehu getDakehu() {
-		return dakehu;
-	}
-
-	public void setDakehu(Dakehu dakehu) {
-		this.dakehu = dakehu;
-	}
-
-	public DakehuDao getDakehuDao() {
-		return dakehuDao;
-	}
-
-	@Resource
-	public void setDakehuDao(DakehuDao dakehuDao) {
-		this.dakehuDao = dakehuDao;
-	}
 }

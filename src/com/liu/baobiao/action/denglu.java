@@ -18,12 +18,12 @@ public class denglu extends ActionSupport implements ModelDriven<Object> {
 
 	private searchInfo searchInfo = new searchInfo();
 
-	private User user = new User();
+	@Resource
 	private UserDao userDao;
 
 	@Override
 	public String execute() throws Exception {
-		user = userDao.findByusername(searchInfo.getUsername());
+		User user = userDao.findByusername(searchInfo.getUsername());
 		HttpServletRequest request = ServletActionContext.getRequest();
 
 		String yuangong = user.getYuangong();
@@ -31,11 +31,11 @@ public class denglu extends ActionSupport implements ModelDriven<Object> {
 		request.getSession().setMaxInactiveInterval(-1);
 
 		searchInfo.setUsername(null);
-		
+
 		if (searchInfo.getPassword() == "") {
 			return "faild";
 		}
-		
+
 		if (user.getPassword().equalsIgnoreCase(searchInfo.getPassword())) {
 			return "success";
 		} else {
@@ -52,30 +52,4 @@ public class denglu extends ActionSupport implements ModelDriven<Object> {
 		// TODO Auto-generated method stub
 		return searchInfo;
 	}
-
-	public searchInfo getSearchInfo() {
-		return searchInfo;
-	}
-
-	public void setSearchInfo(searchInfo searchInfo) {
-		this.searchInfo = searchInfo;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public UserDao getUserDao() {
-		return userDao;
-	}
-
-	@Resource
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
-
 }

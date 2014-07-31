@@ -23,14 +23,14 @@ public class chaxun extends ActionSupport implements ModelDriven<Object> {
 
 	private String cunzai;
 
-	private Dakehu dakehu;
+	@Resource
 	private DakehuDao dakehuDao;
 
 	@Override
 	public String execute() throws Exception {
 		dakehus = dakehuDao.findBypnr(searchInfo.getPnrchaxun().trim());
 		if (dakehus.size() > 0) {
-			for (int i = 0;i < dakehus.size()-1;i++) {
+			for (int i = 0; i < dakehus.size() - 1; i++) {
 				dakehuDao.delete(dakehus.get(i));
 			}
 			dakehus = dakehuDao.findBypnr(searchInfo.getPnrchaxun().trim());
@@ -38,10 +38,11 @@ public class chaxun extends ActionSupport implements ModelDriven<Object> {
 		} else {
 			dakehus = dakehuDao.findByordid(searchInfo.getOrdidchaxun().trim());
 			if (dakehus.size() > 0) {
-				for (int i = 0;i < dakehus.size()-1;i++) {
+				for (int i = 0; i < dakehus.size() - 1; i++) {
 					dakehuDao.delete(dakehus.get(i));
 				}
-				dakehus = dakehuDao.findByordid(searchInfo.getOrdidchaxun().trim());
+				dakehus = dakehuDao.findByordid(searchInfo.getOrdidchaxun()
+						.trim());
 				cunzai = "1";
 			} else {
 				cunzai = "这个订单不存在！！！快做表！！！";
@@ -58,31 +59,6 @@ public class chaxun extends ActionSupport implements ModelDriven<Object> {
 	public Object getModel() {
 		// TODO Auto-generated method stub
 		return searchInfo;
-	}
-
-	public searchInfo getSearchInfo() {
-		return searchInfo;
-	}
-
-	public void setSearchInfo(searchInfo searchInfo) {
-		this.searchInfo = searchInfo;
-	}
-
-	public Dakehu getDakehu() {
-		return dakehu;
-	}
-
-	public void setDakehu(Dakehu dakehu) {
-		this.dakehu = dakehu;
-	}
-
-	public DakehuDao getDakehuDao() {
-		return dakehuDao;
-	}
-
-	@Resource
-	public void setDakehuDao(DakehuDao dakehuDao) {
-		this.dakehuDao = dakehuDao;
 	}
 
 	public List<Dakehu> getDakehus() {
