@@ -4,6 +4,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 import org.dom4j.Document;
+import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.springframework.stereotype.Component;
 
@@ -30,8 +31,11 @@ public class faduanxin extends ActionSupport implements ModelDriven<Object> {
 				+ "&sendtime=";
 		SAXReader reader = new SAXReader();
 		Document document = reader.read(new URL(qurl));
-		if ("0".endsWith(document.valueOf("/root/@return"))) {
+		Element rootElement = document.getRootElement();
+		if ("0".endsWith(rootElement.attributeValue("return"))) {
 			duanxin = "发送成功";
+		} else {
+			duanxin = "发送失败";
 		}
 		return "success";
 	}
