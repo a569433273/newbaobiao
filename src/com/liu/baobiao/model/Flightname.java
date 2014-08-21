@@ -6,17 +6,9 @@ import javax.persistence.Id;
 @Entity
 public class Flightname {
 
-	private String B;
 	private String sanzima;
 	private String jichang;
-
-	public String getB() {
-		return B;
-	}
-
-	public void setB(String b) {
-		B = b;
-	}
+	private String chengshi;
 
 	@Id
 	public String getSanzima() {
@@ -33,5 +25,13 @@ public class Flightname {
 
 	public void setJichang(String jichang) {
 		this.jichang = jichang;
+	}
+
+	public String getChengshi() {
+		return chengshi;
+	}
+
+	public void setChengshi(String chengshi) {
+		this.chengshi = chengshi;
 	}
 }
