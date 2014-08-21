@@ -39,7 +39,7 @@ public class xiugai extends ActionSupport implements ModelDriven<Object> {
 		dakehu.setHangcheng(searchInfo.getXhangcheng());
 		dakehu.setHangban(searchInfo.getXhangban());
 		dakehu.setCangwei(searchInfo.getXcangwei());
-		dakehu.setOrdid(searchInfo.getXordid());
+		dakehu.setOrdid("AS"+searchInfo.getXchupiaoriqi()+searchInfo.getXordid().substring(10, 15));
 		dakehu.setChengjiriqi(searchInfo.getXchengjiriqi());
 		dakehu.setPiaomianjia(searchInfo.getXpiaomianjia());
 		dakehu.setShuifei(searchInfo.getXshuifei());
