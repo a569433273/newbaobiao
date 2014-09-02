@@ -65,6 +65,10 @@ public class duanxinpiaohao extends ActionSupport implements
 				qifei.setText("PEK");
 			}
 			Element daoda = rootElement.element("DST");
+			if (daoda.getText().equals("BJS")) {
+				daoda.setText("PEK");
+			}
+			
 
 			String qifeijichang = flightnameDao.findbysanzima(qifei.getText())
 					.getJichang();
@@ -77,6 +81,10 @@ public class duanxinpiaohao extends ActionSupport implements
 			for (Iterator it = zongjiarootElement.elementIterator(); it
 					.hasNext();) {
 				Element zongjiaElement = (Element) it.next();
+				System.out.println(zongjiaElement.attribute("Type").getText());
+				System.out.println(zongjiaElement
+							.attribute("Value")
+							.getText());
 				if (zongjiaElement.attribute("Type").getText().equals("A")) {
 					zongjia = zongjiaElement
 							.attribute("Value")
@@ -94,7 +102,7 @@ public class duanxinpiaohao extends ActionSupport implements
 					+ hangbanshijian.getText().substring(8, 10) + "日"
 					+ qifeijichang + qifeihangzhanlou.getText() + "("
 					+ qifeishijian.getText() + "起飞)-" + daodajichang
-					+ daodahangzhanlou.getText() + "已出票，票号" + piaohao.getText()
+					+ daodahangzhanlou.getText() + "(到达)" + "已出票，票号" + piaohao.getText()
 					+ ",总价￥" + zongjia + ",祝旅途愉快!";
 			System.out.println(duanxin);
 		} catch (Exception e) {

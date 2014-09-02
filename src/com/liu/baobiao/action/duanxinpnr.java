@@ -43,47 +43,49 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 		Service service = new Service();
 		String returnString = service.getServiceSoap().abeSubmit(identity,
 				request, filter);
+		Document document = DocumentHelper.parseText(returnString);
+		Element rootElement = document.getRootElement();
+
+		List<String> piaohao = new ArrayList<String>();
+
+		Element passengers = rootElement.element("Passengers");
+		for (Iterator it = passengers.elementIterator(); it.hasNext();) {
+			Element ssElement = (Element) it.next();
+			duanxin += ssElement.attribute("Name").getText();
+			duanxin += ssElement.attribute("CardNo").getText();
+			piaohao.add(ssElement.attribute("TicketNo").getText());
+		}
+		Element flightElement = rootElement.element("Flights")
+				.element("Flight");
+		Attribute hangkonggongsi = flightElement.attribute("Carrier");
+		String hangkonggongsiname = hangkonggsDao.fingbycode(
+				hangkonggongsi.getText()).getJiancheng();
+
+		Attribute hangbanhao = flightElement.attribute("Flight");
+		Attribute hangbanshijian = flightElement.attribute("DepartureDate"); // 5,7是月份,8-10是日期
+		Attribute qifeishijian = flightElement.attribute("DepartureTime");
+		Attribute daodashijian = flightElement.attribute("ArriveTime");
+
+		Attribute qifei = flightElement.attribute("BoardPoint");
+		if (qifei.getText().equals("BJS")) {
+			qifei.setText("PEK");
+		}
+		Attribute daoda = flightElement.attribute("OffPoint");
+		if (daoda.getText().equals("BJS")) {
+			daoda.setText("PEK");
+		}
+		String qifeijichang = flightnameDao.findbysanzima(qifei.getText())
+				.getJichang();
+		String daodajichang = flightnameDao.findbysanzima(daoda.getText())
+				.getJichang();
+
+		Attribute qifeihangzhanlou = flightElement.attribute("BoardPointAT");
+		Attribute daodahangzhanlou = flightElement.attribute("OffpointAT");
+		if (daodahangzhanlou.getText().equals("-")) {
+			daodahangzhanlou.setText("");
+		}
+		String zongjia = "";
 		try {
-			Document document = DocumentHelper.parseText(returnString);
-			Element rootElement = document.getRootElement();
-
-			List<String> piaohao = new ArrayList<String>();
-
-			Element passengers = rootElement.element("Passengers");
-			for (Iterator it = passengers.elementIterator(); it.hasNext();) {
-				Element ssElement = (Element) it.next();
-				duanxin += ssElement.attribute("Name").getText();
-				duanxin += ssElement.attribute("CardNo").getText();
-				piaohao.add(ssElement.attribute("TicketNo").getText());
-			}
-			Element flightElement = rootElement.element("Flights").element(
-					"Flight");
-			Attribute hangkonggongsi = flightElement.attribute("Carrier");
-			String hangkonggongsiname = hangkonggsDao.fingbycode(
-					hangkonggongsi.getText()).getJiancheng();
-
-			Attribute hangbanhao = flightElement.attribute("Flight");
-			Attribute hangbanshijian = flightElement.attribute("DepartureDate"); // 5,7是月份,8-10是日期
-
-			Attribute qifei = flightElement.attribute("BoardPoint");
-			if (qifei.getText().equals("BJS")) {
-				qifei.setText("PEK");
-			}
-			Attribute daoda = flightElement.attribute("OffPoint");
-
-			String qifeijichang = flightnameDao.findbysanzima(qifei.getText())
-					.getJichang();
-			String daodajichang = flightnameDao.findbysanzima(daoda.getText())
-					.getJichang();
-
-			Attribute qifeihangzhanlou = flightElement
-					.attribute("BoardPointAT");
-			Attribute daodahangzhanlou = flightElement.attribute("OffpointAT");
-			if (daodahangzhanlou.getText().equals("-")) {
-				daodahangzhanlou.setText("");
-			}
-			Attribute qifeishijian = flightElement.attribute("DepartureTime");
-			String zongjia = "";
 			Element zongjiarootElement = rootElement.element("FNs").element(
 					"FN");
 			for (Iterator it = zongjiarootElement.elementIterator(); it
@@ -100,21 +102,24 @@ public class duanxinpnr extends ActionSupport implements ModelDriven<Object> {
 							* piaohao.size());
 				}
 			}
-			duanxin += hangkonggongsiname + hangkonggongsi.getText()
-					+ hangbanhao.getText() + " "
-					+ hangbanshijian.getText().substring(5, 7) + "月"
-					+ hangbanshijian.getText().substring(8, 10) + "日"
-					+ qifeijichang + qifeihangzhanlou.getText() + "("
-					+ qifeishijian.getText() + "起飞)-" + daodajichang
-					+ daodahangzhanlou.getText() + "已出票，票号";
-			// + ",总价￥" + zongjia + ",祝旅途愉快!窠浦航空";
-			for (int i = 0; i < piaohao.size(); i++) {
-				duanxin += piaohao.get(i) + ",";
-			}
-			duanxin += ",总价￥" + zongjia + ",祝旅途愉快!";
 		} catch (Exception e) {
-			// TODO: handle exception
+			// TODO Auto-generated catch block
+			System.out.println("这个是平台B2B");
 		}
+
+		duanxin += hangkonggongsiname + hangkonggongsi.getText()
+				+ hangbanhao.getText() + " "
+				+ hangbanshijian.getText().substring(5, 7) + "月"
+				+ hangbanshijian.getText().substring(8, 10) + "日"
+				+ qifeijichang + qifeihangzhanlou.getText() + "("
+				+ qifeishijian.getText() + "起飞)-" + daodajichang
+				+ daodahangzhanlou.getText() + "(" + daodashijian.getText()
+				+ "到达)" + "已出票，票号";
+		if (piaohao.size() > 0) {
+			duanxin += piaohao.get(0).replaceAll("-", "") + "-"
+					+ piaohao.get(piaohao.size() - 1).substring(12, 14);
+		}
+		duanxin += ",总价￥" + zongjia + ",祝旅途愉快!";
 		return "success";
 	}
 
