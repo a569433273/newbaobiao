@@ -23,7 +23,7 @@ public class faduanxin extends ActionSupport implements ModelDriven<Object> {
 	@Override
 	public String execute() throws Exception {
 		duanxin = "";
-		String qurl = "http://211.147.244.114:9801/CASServer/SmsAPI/SendMessage.jsp?userid=83497&password=nestpu"
+		String qurl = "http://:9801/CASServer/SmsAPI/SendMessage.jsp?userid=83497&password=nestpu"
 				+ "&destnumbers="
 				+ searchInfo.getShoujihao()
 				+ "&msg="
@@ -33,9 +33,9 @@ public class faduanxin extends ActionSupport implements ModelDriven<Object> {
 		Document document = reader.read(new URL(qurl));
 		Element rootElement = document.getRootElement();
 		if ("0".endsWith(rootElement.attributeValue("return"))) {
-			duanxin = "发送成功";
+			duanxin = "路垄脣脥鲁脡鹿娄";
 		} else {
-			duanxin = "发送失败";
+			duanxin = "路垄脣脥脢搂掳脺";
 		}
 		return "success";
 	}
